@@ -18,12 +18,17 @@ ENV MISSING_OVERRIDE="${MISSING:+8094}"
 ENV PORT_P 8100
 ENV RANGE_P 8101-8105
 ENV PROTO udp
+ENV EARLY_EXPOSE 8060
+
+#         8060
+EXPOSE $EARLY_EXPOSE
 
 ADD run.sh .
 
+ENV EARLY_EXPOSE 8061
 # expose range, env and regular port
-# exp   8080     8081    8083 8084  8085     8087       8090      8091      8092      8092     8093      8094   warn and ignore for both     8100/udp           8101/udp
-EXPOSE "$PORT" 8081-8082 8083 "$X" $RANGE $RECURSIVE $ARG_PORT ${BRACES} "${LINE2}" $OVERLAP $DEFAULT $OVERRIDE $MISSING_OVERRIDE GARBAGE ${PORT_P}/${PROTO} ${RANGE_P}/udp
+# exp       8061        8080     8081    8083 8084  8085     8087       8090      8091      8092      8092     8093      8094   warn and ignore for both     8100/udp           8101/udp
+EXPOSE "$EARLY_EXPOSE" "$PORT" 8081-8082 8083 "$X" $RANGE $RECURSIVE $ARG_PORT ${BRACES} "${LINE2}" $OVERLAP $DEFAULT $OVERRIDE $MISSING_OVERRIDE GARBAGE ${PORT_P}/${PROTO} ${RANGE_P}/udp
 
 # shouldn't take into account in previous EXPOSE
 # env $PORT should evaluate to 8080 there
