@@ -1,10 +1,8 @@
 #!/bin/bash
 
+env | grep 'a.b.c'
+env 'x.y.z=works' env | grep 'x.y.z'
+env
+
 python -m SimpleHTTPServer 8080 &
-python -m SimpleHTTPServer 8081 &
-python -m SimpleHTTPServer 8083 &
-python -m SimpleHTTPServer 8084 &
-python -m SimpleHTTPServer 8085 &
-python -m SimpleHTTPServer 8087 &
-python -m SimpleHTTPServer 8090 &
 wait
